@@ -237,12 +237,12 @@ class QDMGraphicsView(QGraphicsView):
                     edge.grEdge if edge.grEdge is not None else None,
                 )
 
-            if event.modifiers() & Qt.CTRL:
+            if event.modifiers() & Qt.ControlModifier:
                 print("  Graphic Items in GraphicScene:")
                 for item in self.grScene.items():
                     print("    ", item)
 
-        if DEBUG_MMB_LAST_SELECTIONS and event.modifiers() & Qt.SHIFT:
+        if DEBUG_MMB_LAST_SELECTIONS and event.modifiers() & Qt.ShiftModifier:
             print(
                 "scene _last_selected_items:", self.grScene.scene._last_selected_items
             )
@@ -322,7 +322,7 @@ class QDMGraphicsView(QGraphicsView):
             item = self.snapping.getSnappedSocketItem(event)
 
         if isinstance(item, QDMGraphicsSocket):
-            if self.mode == MODE_NOOP and event.modifiers() & Qt.CTRL:
+            if self.mode == MODE_NOOP and event.modifiers() & Qt.ControlModifier:
                 socket = item.socket
                 if socket.hasAnyEdge():
                     self.mode = MODE_EDGES_REROUTING
